@@ -1,6 +1,7 @@
 var express = require('express');
 var formidable = require('formidable');
 var path = require('path');
+
 app = express()
 
 var port = process.env.PORT || 8080;
@@ -12,7 +13,7 @@ app.get('/', function(req, res) {
 app.post('/filesize', function (req, res) {
   var form = new formidable.IncomingForm();
   form.multiples = false;
-  form.uploadDir = path.join(__dirname, '/uploads');
+  form.uploadDir = __dirname;
   
   form.on('file', function(field, file) {
   	res.json({size: file.size});
